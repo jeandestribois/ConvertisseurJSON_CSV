@@ -30,7 +30,7 @@ public class Cnv_JSON_to_CSV{
 		
 	}
 	
-	public  void converteur_J_C() throws IOException, ParseException{
+	public void converteur_J_C() throws IOException, ParseException{
 		
 		JSONParser jsonParser = new JSONParser();
         

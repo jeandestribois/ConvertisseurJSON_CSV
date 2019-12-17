@@ -1,13 +1,12 @@
 package fr.uvsq.payamakrami_raphaelgillotroux_jeandestribois.ConvertisseurJSON_CSV;
 
 import java.io.IOException;
-
 import org.json.simple.parser.ParseException;
 
 /**
  * La classe App est la classe principale du principale du projet.
  * 
- * @author jean
+ * @author Payam
  *
  */
 public class App 
@@ -15,10 +14,7 @@ public class App
 	
     public static void main( String[] args ) throws IOException, ParseException
     {
-    	/*
-    	Interface dialogue = new Interface();
-    	dialogue.confFileChoice();
-    	*/
+
     	
     	System.out.println("FAIRE LE FICHIER CSV");
     	
