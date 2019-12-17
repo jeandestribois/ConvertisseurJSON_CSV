@@ -8,9 +8,11 @@ package fr.uvsq.payamakrami_raphaelgillotroux_jeandestribois.ConvertisseurJSON_C
  */
 public class App 
 {
+	/*
     public static void main( String[] args )
     {
     	Interface dialogue = new Interface();
     	dialogue.confFileChoice();
     }
+    */
 }
