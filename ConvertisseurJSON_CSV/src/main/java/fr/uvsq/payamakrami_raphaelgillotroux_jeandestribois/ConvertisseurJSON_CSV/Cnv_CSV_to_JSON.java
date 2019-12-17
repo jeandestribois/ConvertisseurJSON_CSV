@@ -42,7 +42,12 @@ import java.nio.charset.Charset;
 
 public class Cnv_CSV_to_JSON {
 	
-	public static void main(String[] args) throws IOException {
+	
+	public void Cnv_CSV_to_JSON() {
+		
+	}
+	
+	public void converteur_C_J() throws IOException {
 		  CSVReader reader=new CSVReader(new FileReader("CSV_file"));
 		  
 		  CSV myfile;
