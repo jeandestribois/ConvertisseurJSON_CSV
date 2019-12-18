@@ -1,0 +1,4 @@
+nomprenom:Nom|Prenom
+ageprenom:Age|Prenom
+age:Age
+nom:Nom

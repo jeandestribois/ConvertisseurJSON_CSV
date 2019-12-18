@@ -1,14 +1,5 @@
-package fr.uvsq.payamakrami_raphaelgillotroux_jeandestribois.ConvertisseurJSON_CSV;
-
+﻿
 import java.io.*;
-
-/**
- * La classe Convertisseur est la classe appelé pour effectuer les différentes conversion souhaité.
- * 
- * @author raphael
- *
- */
-
 
 
 public class Convertisseur {
@@ -16,7 +7,14 @@ public class Convertisseur {
 	private String converti;
 	private String format;
 	
-	public Convertisseur(String nomFichierSource, String format){
+	
+	private String configuration;
+	private String clefCible[];
+	private String regleCible[];
+	
+	
+	
+	public Convertisseur(String nomFichierSource, String format,String nomFichierConfig){
 		String concatenation="";
 		try{
 			InputStream flux=new FileInputStream(nomFichierSource); 
@@ -32,9 +30,40 @@ public class Convertisseur {
 		catch (Exception e){
 			System.out.println(e.toString());
 			}
-				
+
 
 		this.source=concatenation;
+		
+		
+		String configuration="";
+		try{
+			InputStream flux2=new FileInputStream(nomFichierConfig); 
+			InputStreamReader lecture2=new InputStreamReader(flux2);
+			BufferedReader buff2=new BufferedReader(lecture2);
+			String ligne2;
+			while ((ligne2=buff2.readLine())!=null){
+				configuration+=ligne2+"\n";
+				//System.out.println(ligne);
+		}
+			buff2.close(); 
+		}		
+		catch (Exception e){
+			System.out.println(e.toString());
+			}
+		
+		this.configuration=configuration;
+		
+		String ligne[] = configuration.split("\n");
+		
+		
+		this.regleCible=new String [ligne.length];
+		this.clefCible=new String [ligne.length];
+		for(int i=0;i<ligne.length;i++){
+			this.clefCible[i]=ligne[i].split(":")[0];
+			this.regleCible[i]=ligne[i].split(":")[1];
+		}
+		
+		
 		this.converti="";
 		
 		
@@ -53,13 +82,30 @@ public class Convertisseur {
 		return this.source;
 	}
 	
+	public String getConfig(){
+		return this.configuration;
+	}
+	
+	public void getClefCible(){
+		for(int i=0;i<this.clefCible.length;i++){
+			System.out.println(this.clefCible[i]);
+			
+			System.out.println(this.regleCible[i]);
+		}
+
+	}
+	
+	
+	
 	public void Converssion(){
 		String converti="";
 		if (this.format.compareTo("csv")==0){
 			converti="[\n";
 			String ligne[] = this.source.split("\n");
 			
-			String cle[]=ligne[0].split(",");
+			String cleSource[]=ligne[0].split(",");
+			String cle[]=this.clefCible;
+			
 			
 			for (int i=1;i<ligne.length;i++){
 				String donnee[]=ligne[i].split(",");
@@ -68,20 +114,52 @@ public class Convertisseur {
 				
 				converti+="{ \n";
 				
-				for (int j=0;j<donnee.length;j++){
+				// On analyse chacune des règles de notre fichier config
+				
+				for(int j=0;j<this.regleCible.length;j++){
+					String regle[]=this.regleCible[j].split("\\|");
 					
-					//System.out.println(donnee[j]);
+					converti+='"'+cle[j]+'"'+": "+'"';
 					
-					converti+='"'+cle[j]+'"'+": "+'"'+donnee[j]+'"';
+					for(int k=0;k<regle.length;k++){
+						int indice = 0;
+						
+						
+						// On recherche l'indice de la cle source correspondante
+						
+						
+						
+						
+						for(int l=0;l<cleSource.length;l++){
+							System.out.println(regle[k]+" "+(cleSource[l]));
+							if(regle[k].compareTo(cleSource[l])==0){
+								indice=l;
+								}	
+						}
 					
-					if (j != donnee.length-1){
+						
+						converti+=donnee[indice];
+						}
+					
+					converti+='"';
+					
+					if (j != regle.length-1){
 						converti+=",\n";
 					}
 					else{
 						converti+="\n";
 					}
 					
-					}
+					
+				
+				
+				}
+					
+					
+					
+					
+					
+					
 					
 				if (i != ligne.length-1){
 						converti+="},\n";
