@@ -16,7 +16,7 @@ public class App
     {
 
     	
-    	System.out.println("FAIRE LE FICHIER CSV");
+    	System.out.println("FAIRE LE FICHIER CSV\n");
     	
     	Cnv_CSV_to_JSON c = new Cnv_CSV_to_JSON();
     	c.converteur_C_J();
@@ -26,7 +26,7 @@ public class App
     	System.out.println("FAIRE LE FICHIER JSON");
     	
     	Cnv_JSON_to_CSV j = new Cnv_JSON_to_CSV();
-    	j.converteur_J_C();
+    	//j.converteur_J_C();
     }
     
 }

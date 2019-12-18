@@ -43,12 +43,22 @@ public class Cnv_JSON_to_CSV{
         	
 
         	System.out.println(array.size());
+        	
+        	/*
         	for(int i=0;i<array.size();i++){
         	     //JSONObject site = (JSONObject)array.get(i); // Exception happens here.
         	     System.out.println(array.get(i));
         	     System.out.println();
         	    }
+        	*/
             //System.out.println(array);
+        	JSONObject jo = new JSONObject();
+        	for (Object json : array) {
+        	    printJSONOBject((JSONObject) json);
+        	}
+
+        	
+        	
              
 	}
         catch (FileNotFoundException e) {
@@ -61,4 +71,17 @@ public class Cnv_JSON_to_CSV{
 	
 
 }
+	
+	
+	private void printJSONOBject(JSONObject jsonObject) {
+	    for (Object keyObj : jsonObject.keySet()) {
+	        String key = (String) keyObj;
+	        Object valObj = jsonObject.get(key);
+	        if (valObj instanceof JSONObject) {
+	            printJSONOBject((JSONObject) valObj);
+	        } else {
+	            System.out.println(key + " : " + valObj);
+	        }
+	    }
+	}
 }

@@ -1,4 +1,5 @@
-Sexe,Prénom,Année de naissance
-M,Alphonse,1932
-F,Béatrice,1964
-F,Charlotte,1988
+Sexe,Prénom,Année de naissance,nombre
+Male,Alphonse,1932,1
+Female,Béatrice,1964,2
+Female,Charlotte,1988,3
+Male,John,1985,4
