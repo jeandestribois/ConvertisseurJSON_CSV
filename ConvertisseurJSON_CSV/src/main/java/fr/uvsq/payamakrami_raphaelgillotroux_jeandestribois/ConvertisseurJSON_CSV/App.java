@@ -12,5 +12,7 @@ public class App
     {
     	Interface dialogue = new Interface();
     	dialogue.confFileChoice();
+    	dialogue.conversionChoice();
+    	dialogue.fileToWriteChoice();
     }
 }
