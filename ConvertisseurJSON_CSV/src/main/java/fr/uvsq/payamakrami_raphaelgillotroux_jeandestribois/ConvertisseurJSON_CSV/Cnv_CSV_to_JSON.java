@@ -60,7 +60,7 @@ import org.json.simple.parser.ParseException;
 public class Cnv_CSV_to_JSON {
 	
 	ArrayList<String> Keys = new ArrayList<String>();
-	double counter =0;
+	
 	
 	JSONObject ourObjects = new JSONObject();
 	JSONArray allObjects = new JSONArray();
@@ -91,7 +91,7 @@ public class Cnv_CSV_to_JSON {
 		  */
 		  writeJson(allElements);
 		  
-		  nextLine=reader.readNext();
+//		  nextLine=reader.readNext();
 		  //allElements[0]= (String)nextLine;
 		  //System.out.println("size of datas:"+nextLine.length);
 /*		  
@@ -112,7 +112,7 @@ public class Cnv_CSV_to_JSON {
 */		  
 		  
 		  //writer2.writeAll(allElements);
-		  System.out.println("\n\nGenerated CSV File\n\n");
+//		  System.out.println("\n\nGenerated CSV File\n\n");
 		  //System.out.println(sw.toString());
 		}
 	
@@ -130,8 +130,6 @@ public class Cnv_CSV_to_JSON {
 		
 		for (String[] arr : allElements) {
 			if (c == 0) {
-				//System.out.println("setting keeeeeeeeys");
-				
 				for(int i=0; i<arr.length; i++) {
 					Keys.add(arr[i]);
 				}
@@ -140,7 +138,6 @@ public class Cnv_CSV_to_JSON {
 			
 			else {
 				for(int i=0; i<arr.length; i++) {
-					//System.out.println(Keys.get(i)+"   AAANNDDD   "+ arr[i]);
 					ourObjects.put(Keys.get(i), arr[i]);
 					
 				}
@@ -148,7 +145,7 @@ public class Cnv_CSV_to_JSON {
 			}
 			
 			allObjects.add(ourObjects);
-			System.out.println("current size is::::::::: "+allObjects.get(0).toString());
+			System.out.println("current array_of_Objects[0] is::::::::: "+allObjects.get(0).toString()+"and size="+allObjects.size());
 			
 			System.out.println("****************");
 			for (Object key:ourObjects.keySet())
