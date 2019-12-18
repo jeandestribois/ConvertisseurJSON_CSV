@@ -1,12 +1,12 @@
 package fr.uvsq.payamakrami_raphaelgillotroux_jeandestribois.ConvertisseurJSON_CSV;
 
 import java.util.Scanner;
+import java.io.*;
 
 /**
  * Cette classe s'occupe de gérer les interactions avec l'utilisateur.
  * 
  * @author jean
- *
  */
 
 
@@ -14,17 +14,22 @@ public class Interface {
 	/**
 	 * Attribut stockant le chemin du fichier de configuration. 
 	 */
-	private String conf_file_path;
+	private FileReader confFile;
 	
 	/**
 	 * Constructeur de cette classe qui affiche un message de bienvenue.
 	 * <p>
-	 * Il met la valeur de l'attribut "conf_file_path" à la valeur du chemin du fichier de 
+	 * Il met la valeur de l'attribut "conf_file" à la valeur du chemin du fichier de 
 	 * configuration par défaut.
 	 */
 	Interface() {
 		System.out.println("\n\n\n\n\n\nBonjour, bienvenue dans ce convertisseur JSON-CSV / CSV-JSON !");
-		this.conf_file_path = new String("conf_file_default"); 
+		try {
+			this.confFile = new FileReader("pom.xml"); 
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("Erreur : " + e.getMessage());
+		}
 	}
 	
 	/**
@@ -45,9 +50,20 @@ public class Interface {
 		
 		if(answer.compareTo("n")==0) {
 			System.out.println("Veuillez saisir le chemin du fichier de configuration à utiliser");
-			answer = scan.nextLine();
-			this.conf_file_path = answer;
+			try {
+				this.confFile = new FileReader(scan.nextLine());
+			}
+			catch(FileNotFoundException e) {
+				System.out.println("Erreur : " + e.getMessage());
+			}
 		}
 		scan.close();
+	}
+	
+	/**
+	 * Méthode renvoyant l'attribut "confFile".
+	 */
+	public FileReader getConfFile() {
+		return this.confFile;
 	}
 }
