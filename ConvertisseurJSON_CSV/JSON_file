@@ -1,16 +1,11 @@
-[
-    {
-        "employee": {
-            "firstName": "Lokesh",
-            "lastName": "Gupta",
-            "website": "howtodoinjava.com"
-        }
-    },
-    {
-        "employee": {
-            "firstName": "Brian",
-            "lastName": "Schultz",
-            "website": "example.com"
-        }
-    }
-]
+{"menu": {
+  "id": "file",
+  "value": "File",
+  "popup": {
+    "menuitem": [
+      {"value": "New", "onclick": "CreateNewDoc()"},
+      {"value": "Open", "onclick": "OpenDoc()"},
+      {"value": "Close", "onclick": "CloseDoc()"}
+    ]
+  }
+}}

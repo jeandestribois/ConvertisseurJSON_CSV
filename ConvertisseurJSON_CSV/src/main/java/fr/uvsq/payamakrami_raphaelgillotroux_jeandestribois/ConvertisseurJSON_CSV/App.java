@@ -16,17 +16,17 @@ public class App
     {
 
     	
-    	System.out.println("CONVERTIR LE FICHIER CSV\n");
+    	//System.out.println("CONVERTIR LE FICHIER CSV\n");
     	
-    	Cnv_CSV_to_JSON c = new Cnv_CSV_to_JSON();
-    	c.converteur_C_J();
+    	//Cnv_CSV_to_JSON c = new Cnv_CSV_to_JSON();
+    	//c.converteur_C_J();
     	
     	
     	
-    	//System.out.println("FAIRE LE FICHIER JSON");
+    	System.out.println("FAIRE LE FICHIER JSON");
     	
     	Cnv_JSON_to_CSV j = new Cnv_JSON_to_CSV();
-    	//j.converteur_J_C();
+    	j.converteur_J_C();
     }
     
 }
