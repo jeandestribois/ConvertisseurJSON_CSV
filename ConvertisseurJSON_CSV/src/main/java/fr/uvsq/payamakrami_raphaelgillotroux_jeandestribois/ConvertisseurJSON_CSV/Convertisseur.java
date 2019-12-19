@@ -75,6 +75,7 @@ public class Convertisseur {
 			}
 			
 			allObjects.add(ourObjects);
+			ourObjects = new JSONObject();
 		}
 		this.fileToWrite.write(allObjects.toJSONString());  
 	}
