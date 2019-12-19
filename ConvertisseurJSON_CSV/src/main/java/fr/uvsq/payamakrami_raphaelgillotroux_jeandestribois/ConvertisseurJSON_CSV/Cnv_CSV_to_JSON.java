@@ -73,95 +73,68 @@ public class Cnv_CSV_to_JSON {
 	
 	
 	public void converteur_C_J() throws IOException {
-		  CSVReader reader=new CSVReader(new FileReader("CSV_file"));
+		  CSVReader reader=new CSVReader(new FileReader("CSV_file")); //lire le fichier CSV
 		  
 		  CSV myfile;
 		  
 		  String[] nextLine;
-		  List<String[]> allElements = reader.readAll();
-		  /*
-		  System.out.println("size::::"+allElements.size());
-		  
-		  allElements.forEach(new Consumer<String[]>() {
-			@Override
-			public void accept(String[] arr) {
-				System.out.println(arr[0]);
-			}
-		});
-		  */
+		  List<String[]> allElements = reader.readAll();			// enregistrer les lignes du fichier CSV
+	
+
 		  writeJson(allElements);
 		  
-//		  nextLine=reader.readNext();
-		  //allElements[0]= (String)nextLine;
-		  //System.out.println("size of datas:"+nextLine.length);
-/*		  
-		  while ((nextLine=reader.readNext()) != null) {
-		    System.out.println("!!!!!!: [" + nextLine[0] + "]\n******: ["+ nextLine[1]+ "]\n$$$$$$: ["+ nextLine[2]+ "]");
-		    System.out.println();
-		  }
-		  
-		  //List<String[]> allElements=reader.readAll();
-		  
-		  
-		  File file = new File("Converted_from_CSV"); 
-		  FileWriter converted = new FileWriter(file);
-		  CSVWriter writer2 = new CSVWriter(converted); 
-		  writer2.writeAll(allElements);
-		  
-		  writer2.close();
-*/		  
-		  
-		  //writer2.writeAll(allElements);
-//		  System.out.println("\n\nGenerated CSV File\n\n");
-		  //System.out.println(sw.toString());
 		}
 	
 	
 	private void writeJson(List<String[]> allElements) {
 
-//		System.out.println("size::::"+allElements.size());
-//		System.out.println(allElements.get(0).length);
-
-		
-		//System.out.println(Arrays.toString(allElements.get(0)));
-		//final ArrayList<String> myKeys = new ArrayList<String>();
-		
 		int c=0;
 		
 		for (String[] arr : allElements) {
-			if (c == 0) {
+			
+			if (c == 0) {								//lire qu'une seule fois la 1ere ligne: enregistrer les cles 
 				for(int i=0; i<arr.length; i++) {
 					Keys.add(arr[i]);
 				}
 				c++;
 			}
 			
-			else {
-				for(int i=0; i<arr.length; i++) {
+			else {										//ajouter chaque valeur a ca cle correspondante
+				for(int i=0; i<arr.length; i++) { 
 					ourObjects.put(Keys.get(i), arr[i]);
 					
 				}
 				System.out.println();
-			}
+			
 			
 			allObjects.add(ourObjects);
-			System.out.println("current array_of_Objects[0] is::::::::: "+allObjects.get(0).toString()+"and size="+allObjects.size());
 			
-			System.out.println("****************");
-			for (Object key:ourObjects.keySet())
-				System.out.println(ourObjects.get(key));
+			ourObjects = new JSONObject();
+			
+//			for (int i=0;i<allObjects.size();i++) {
+//				  System.out.println("current array is::::::::: "+allObjects.get(i).toString());
+//			  }
+			
+			
+//			System.out.println("****************");
+//			for (Object key:ourObjects.keySet())
+//				System.out.println(ourObjects.get(key));
+			
+			}
+			
+			 
 			
 		}
 		
 
-//		  for (int i=0;i<4;i++) {
+//		  for (int i=0;i<allObjects.size();i++) {
 //			  System.out.println("current size is::::::::: "+allObjects.get(i).toString());
 //		  }
 		  
-		  try (FileWriter file = new FileWriter("Converted_from_CSV_to_JSON.json")) {
+		  try (FileWriter file = new FileWriter("Converted_from_CSV_to_JSON")) {
 				 
 	            file.write(allObjects.toJSONString());
-	            //file.flush();
+	            file.flush();
 	 
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -173,34 +146,6 @@ public class Cnv_CSV_to_JSON {
 		  //System.out.println(myKeys.get(0));
 		  
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	private static void parseEmployeeObject(JSONObject employee) 
-    {
-        //Get employee object within list
-        JSONObject employeeObject = (JSONObject) employee.get("employee");
-         
-        //Get employee first name
-        String firstName = (String) employeeObject.get("firstName");    
-        System.out.println(firstName);
-         
-        //Get employee last name
-        String lastName = (String) employeeObject.get("lastName");  
-        System.out.println(lastName);
-         
-        //Get employee website name
-        String website = (String) employeeObject.get("website");    
-        System.out.println(website);
-    }
 }
 	
 	
