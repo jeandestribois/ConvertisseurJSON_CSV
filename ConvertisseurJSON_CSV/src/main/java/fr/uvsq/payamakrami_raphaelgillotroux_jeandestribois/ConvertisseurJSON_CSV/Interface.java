@@ -29,6 +29,11 @@ public class Interface {
 	/**
 	 * Attribut stockant le chemin du fichier à écrire.
 	 */
+	private FileReader fileToRead;
+	
+	/**
+	 * Attribut stockant le chemin du fichier à écrire.
+	 */
 	private FileWriter fileToWrite;
 	
 	/**
@@ -70,7 +75,7 @@ public class Interface {
 				this.confFile = new FileReader(scan.nextLine());
 			}
 			catch(FileNotFoundException e) {
-				System.out.println("Erreur : " + e.getMessage());
+				System.out.println("Erreur : " + e.getMessage() + e.getStackTrace());
 				System.exit(1);
 			}
 		}
@@ -97,15 +102,29 @@ public class Interface {
 	}
 	
 	/**
+	 * Méthode permettant à l'utilisateur de choisir à partir de quel fichier sera fait la conversion
+	 */
+	public void fileToReadChoice() {
+		System.out.println("\nVeuillez saisir le chemin du fichier à lire");
+		try {
+			this.fileToRead = new FileReader(this.scan.nextLine());
+		}
+		catch(IOException e) {
+			System.out.println("Erreur : " + e.getMessage() + e.getStackTrace());
+			System.exit(1);
+		}
+	}
+	
+	/**
 	 * Méthode permettant à l'utilisateur de choisir dans quel fichier sera écrit la conversion
 	 */
 	public void fileToWriteChoice() {
-		System.out.println("Veuillez saisir le chemin du fichier à écrire");
+		System.out.println("\nVeuillez saisir le chemin du fichier à écrire");
 		try {
 			this.fileToWrite = new FileWriter(this.scan.nextLine());
 		}
 		catch(IOException e) {
-			System.out.println("Erreur : " + e.getMessage());
+			System.out.println("Erreur : " + e.getMessage() + e.getStackTrace());
 			System.exit(1);
 		}
 	}
@@ -122,6 +141,13 @@ public class Interface {
 	 */
 	public String getConversionChoice() {
 		return this.conversionChoice;
+	}
+	
+	/**
+	 * Méthode renvoyant l'attribut "fileToWrite"
+	 */
+	public FileReader getFileToRead() {
+		return this.fileToRead;
 	}
 	
 	/**
